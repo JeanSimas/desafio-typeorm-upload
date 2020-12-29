@@ -17,32 +17,10 @@ interface CSVTransaction {
 }
 class ImportTransactionsService {
   async execute (importedDataFileName: string): Promise<Transaction[]> {
-    const createTransactionService = new CreateTransactionService();
     const importedDataPath = path.join(
       uploadConfig.directory,
       importedDataFileName,
     );
-
-    // const importedData: Transaction[] = [];
-    // fs.createReadStream(importedDataPath)
-    //   .pipe(csv({separator:', '}))
-    //   .on('data', async data => {
-    //     const { title, value, type, category } = data;
-
-    //     const importedDataItem = await createTransactionService.execute({
-    //       title,
-    //       value,
-    //       type,
-    //       category,
-    //     });
-
-    //     importedData.push(importedDataItem);
-    //   })
-    //   .on('end', () => {
-    //     console.log('CSV file successfully processed');
-    //   });
-
-    // console.log(importedData);
 
     const parser = csvParse({
       delimiter: ', ',
